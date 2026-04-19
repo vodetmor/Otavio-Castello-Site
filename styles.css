@@ -258,17 +258,105 @@ footer {
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.fade-up { animation: fadeUp .7s ease forwards; }
-.fade-up-2 { animation: fadeUp .7s .15s ease forwards; opacity: 0; }
-.fade-up-3 { animation: fadeUp .7s .3s ease forwards; opacity: 0; }
-.fade-up-4 { animation: fadeUp .7s .45s ease forwards; opacity: 0; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes goldPulse {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+.fade-up   { animation: fadeUp .8s cubic-bezier(.22,1,.36,1) forwards; }
+.fade-up-2 { animation: fadeUp .8s .12s cubic-bezier(.22,1,.36,1) forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp .8s .24s cubic-bezier(.22,1,.36,1) forwards; opacity: 0; }
+.fade-up-4 { animation: fadeUp .8s .36s cubic-bezier(.22,1,.36,1) forwards; opacity: 0; }
 
 /* ── SCROLL REVEAL ── */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
 .reveal.visible { opacity: 1; transform: none; }
+
+/* Stagger children inside reveal containers */
+.reveal.visible .role-item,
+.reveal.visible .cred-item,
+.reveal.visible .area-item,
+.reveal.visible .edu-item,
+.reveal.visible .tl-item {
+  animation: fadeUp .6s cubic-bezier(.22,1,.36,1) both;
+}
+.reveal.visible :nth-child(1) { animation-delay: 0s; }
+.reveal.visible :nth-child(2) { animation-delay: .06s; }
+.reveal.visible :nth-child(3) { animation-delay: .12s; }
+.reveal.visible :nth-child(4) { animation-delay: .18s; }
+.reveal.visible :nth-child(5) { animation-delay: .24s; }
+.reveal.visible :nth-child(6) { animation-delay: .30s; }
+.reveal.visible :nth-child(7) { animation-delay: .36s; }
+.reveal.visible :nth-child(8) { animation-delay: .42s; }
+.reveal.visible :nth-child(9) { animation-delay: .48s; }
+.reveal.visible :nth-child(10) { animation-delay: .54s; }
+
+/* Subtle hover lifts */
+.cred-item, .area-item, .role-item, .edu-item, .card {
+  transition: transform .35s cubic-bezier(.22,1,.36,1), background .3s, border-color .3s;
+}
+.cred-item:hover, .area-item:hover, .role-item:hover, .edu-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Gold accent dividers animate width on reveal */
+.hero-divider, .area-line, .divider {
+  transition: width .8s cubic-bezier(.22,1,.36,1);
+}
+
+/* Section labels slide in from left */
+.section-label {
+  transition: opacity .7s, transform .7s;
+}
+.reveal.visible .section-label {
+  animation: slideInLeft .7s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ── ACCESSIBILITY ── */
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Better focus for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Minimum touch targets */
+@media (pointer: coarse) {
+  .btn, .nav-burger, .nav-mobile a, .footer-col a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer-col a {
+    padding: .4rem 0;
+  }
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
