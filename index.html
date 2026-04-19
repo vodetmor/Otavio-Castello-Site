@@ -195,20 +195,57 @@
     .about-list-item { display: flex; gap: 1rem; font-size: .88rem; color: var(--gray); line-height: 1.55; }
     .about-list-item::before { content: '—'; color: var(--gold); flex-shrink: 0; }
 
+    /* ── MOBILE 900px ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-photo { height: 60vw; order: -1; margin-top: var(--nav-h); }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 0;
+      }
+      /* Foto PRIMEIRO em mobile: ocupa ~65% da tela, empurrada até topo da nav */
+      .hero-photo {
+        order: -1;
+        height: 68vw;
+        max-height: 420px;
+        min-height: 260px;
+        margin-top: var(--nav-h);
+      }
       .hero-photo img { height: 100%; }
-      .hero-content { padding: 2rem 1.5rem 4rem; }
+      /* Texto abaixo da foto com padding horizontal generoso */
+      .hero-content {
+        padding: 2rem 1.5rem 4rem;
+        text-align: left;
+      }
+      .hero-name { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+      .hero-actions {
+        flex-direction: column;
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
       .cred-grid { grid-template-columns: 1fr 1fr; }
       .areas-grid { grid-template-columns: 1fr; }
       .hc-block { grid-template-columns: 1fr; }
       .about-cols { grid-template-columns: 1fr; gap: 2.5rem; }
       .photo-grid { grid-template-columns: 1fr 1fr; }
     }
+    /* ── MOBILE 540px ── */
     @media (max-width: 540px) {
-      .cred-grid { grid-template-columns: 1fr; }
+      .hero-photo {
+        height: 78vw;
+        max-height: 360px;
+      }
+      .hero-name { font-size: clamp(2.2rem, 11vw, 3rem); }
+      .hero-titles span { font-size: .82rem; }
+      .cred-grid { grid-template-columns: 1fr 1fr; }
+      .cred-item { padding: 1.75rem 1.25rem; }
       .photo-grid { grid-template-columns: 1fr; }
+      .hero-crm { font-size: .65rem; }
     }
   </style>
 
