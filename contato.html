@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato — Dr. Otávio Castello</title>
+  <meta name="description" content="Entre em contato com o Dr. Otávio Castello — Geriatra, Psiquiatra Forense e Perito Médico-Legista em Brasília."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 1px; background: var(--border);
+      margin-top: 4rem;
+    }
+    .contact-info-col {
+      background: var(--bg-2);
+      padding: 3.5rem 3rem;
+    }
+    .contact-form-col {
+      background: var(--bg);
+      padding: 3.5rem 3rem;
+    }
+    .contact-item {
+      display: flex; gap: 1.25rem;
+      margin-bottom: 2.5rem; align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border: 1px solid var(--gold-line);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-item-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .contact-item h4 {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .35rem;
+    }
+    .contact-item p, .contact-item a {
+      font-size: .9rem; color: var(--gray); line-height: 1.55;
+      transition: color .2s;
+    }
+    .contact-item a:hover { color: var(--white); }
+    .contact-divider { width: 100%; height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+    /* ── FORM ── */
+    .form-title {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--white); margin-bottom: 2rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: .6rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font); font-size: .9rem;
+      padding: .85rem 1rem;
+      transition: border-color .2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--gray-2); }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--bg-2); }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-note { font-size: .75rem; color: var(--gray-2); margin-top: 1rem; line-height: 1.5; }
+    .form-success {
+      display: none;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--gold-line);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .form-success p { font-size: .9rem; color: var(--white); }
+
+    /* ── WHATSAPP BAR ── */
+    .wa-bar {
+      background: var(--bg-3);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 3rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .wa-bar p { font-size: .88rem; color: var(--gray); }
+    .wa-bar strong { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-info-col, .contact-form-col { padding: 2.5rem 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="section-label">Fale Conosco</div>
+    <h1 class="section-title" style="font-family:var(--serif);font-weight:400;">Contato</h1>
+    <p class="section-sub">Para consultas, avaliações periciais, palestras ou assessorias acadêmicas.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout reveal">
+      <!-- INFO -->
+      <div class="contact-info-col">
+        <div class="section-label" style="margin-bottom:2rem;">Informações</div>
+
+
+
+
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>E-mail Secretaria</h4>
+            <a href="mailto:secretaria@otaviocastello.com.br">secretaria@otaviocastello.com.br</a>
+          </div>
+        </div>
+        <div class="contact-divider"></div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Localização</h4>
+            <p>Brasília–DF</p>
+            <p style="margin-top:.25rem;font-size:.78rem;color:var(--gray-2);">Centro Clínico Advance · SGAS 915 Lotes 69/70, Sala 316 · Asa Sul</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <div>
+            <h4>Currículo Lattes</h4>
+            <a href="http://lattes.cnpq.br/6172644291323202" target="_blank" rel="noopener noreferrer" style="font-size:.8rem;word-break:break-all;">lattes.cnpq.br/6172644291323202</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="contact-form-col">
+        <p class="form-title">Envie uma mensagem</p>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome *</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required/>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto">
+              <option value="">Selecione o assunto</option>
+              <option value="consulta">Consulta — Geriatria</option>
+              <option value="pericia">Perícia / Assistência Técnica</option>
+              <option value="palestra">Palestra ou Assessoria</option>
+              <option value="imprensa">Imprensa</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem *</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente como posso ajudar..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center;">Enviar mensagem</button>
+          <div style="background:rgba(201,168,76,0.08);border:1px solid var(--gold-line);padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.78rem;color:var(--gold);line-height:1.5;">
+            ⚠ Atendimento somente particular e com hora marcada. Não atendemos planos de saúde.
+          </div>
+          <p class="form-note">Ao enviar, você será redirecionado para o seu cliente de e-mail. Alternativamente, ligue diretamente: (61) 3244-0040.</p>
+        </form>
+        <div class="form-success" id="form-success">
+          <p>✓ Mensagem preparada. Seu cliente de e-mail será aberto.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVISO SECRETARIA -->
+    <div class="wa-bar reveal" style="border-top:1px solid var(--gold-line);">
+      <div>
+        <p style="font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.5rem;">Secretária · Agendamento de Consultas</p>
+        <p>Não atendemos planos de saúde. <strong>Somente particulares e com hora marcada.</strong></p>
+      </div>
+      <a href="tel:+556132440040" class="btn btn-solid">Ligar: (61) 3244-0040</a>
+    </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="nav.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nome     = document.getElementById('nome').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const assunto  = document.getElementById('assunto').value;
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    if (!nome || !email || !mensagem) {
+      alert('Por favor, preencha os campos obrigatórios.');
+      return;
+    }
+
+    const subject = encodeURIComponent('Contato pelo site' + (assunto ? ' — ' + assunto : ''));
+    const body    = encodeURIComponent(`Nome: ${nome}\nE-mail: ${email}\n\n${mensagem}`);
+    window.location.href = `mailto:secretaria@otaviocastello.com.br?subject=${subject}&body=${body}`;
+
+    document.getElementById('form-success').style.display = 'block';
+  });
+</script>
+<script src="demo-switcher.js"></script>
+</body>
+</html>

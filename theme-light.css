@@ -1,0 +1,85 @@
+/* WHITE THEME OVERRIDE — applied via .theme-light on <html> */
+html.theme-light {
+  --bg:        #fbfaf6;
+  --bg-2:      #ffffff;
+  --bg-3:      #f3efe5;
+  --gold:      #b8932f;
+  --gold-dim:  rgba(184,147,47,0.10);
+  --gold-line: rgba(184,147,47,0.35);
+  --white:     #0A0D18;
+  --gray:      #5a6477;
+  --gray-2:    #8892a4;
+  --border:    rgba(10,13,24,0.10);
+}
+html.theme-light body { background: var(--bg); color: var(--white); }
+
+/* Nav over the dark hero (before scroll) — force light text regardless of theme */
+html.theme-light #nav:not(.scrolled) .nav-links a { color: rgba(248,249,251,0.6); }
+html.theme-light #nav:not(.scrolled) .nav-links a:hover,
+html.theme-light #nav:not(.scrolled) .nav-links a.active { color: #f8f9fb; }
+html.theme-light #nav:not(.scrolled) .nav-links a.active::after { background: #c9a84c; }
+html.theme-light #nav:not(.scrolled) .nav-logo,
+html.theme-light #nav:not(.scrolled) .nav-logo span { color: #f8f9fb; }
+html.theme-light #nav:not(.scrolled) .nav-burger span { background: #f8f9fb; }
+
+/* HERO keeps the dark navy identity even in light theme */
+html.theme-light .hero {
+  background: #0A0D18;
+  color: #f8f9fb;
+}
+html.theme-light .hero .hero-eyebrow { color: #c9a84c; }
+html.theme-light .hero .hero-name { color: #f8f9fb; }
+html.theme-light .hero .hero-name em { color: #c9a84c; font-style: italic; }
+html.theme-light .hero .hero-titles { color: #d4d8e0; }
+html.theme-light .hero .hero-titles strong { color: #f8f9fb; }
+html.theme-light .hero .hero-divider { background: rgba(201,168,76,0.4); }
+html.theme-light .hero .hero-crm { color: #8892a4; }
+html.theme-light .hero .btn { color: #f8f9fb; border-color: rgba(201,168,76,0.5); }
+html.theme-light .hero .btn.btn-solid { background: #c9a84c; color: #0A0D18; border-color: #c9a84c; }
+html.theme-light .hero .hero-photo img {
+  filter: grayscale(15%) contrast(1.02);
+  mask-image: linear-gradient(to top, transparent 0%, black 15%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%, black 88%, transparent 100%);
+}
+html.theme-light .hero .hero-photo::after {
+  background: linear-gradient(to top, #0A0D18 0%, transparent 100%);
+}
+html.theme-light .hero .hero-photo::before {
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 60%);
+}
+html.theme-light #nav.scrolled {
+  background: rgba(251,250,246,0.95);
+  border-bottom: 1px solid var(--border);
+}
+html.theme-light .nav-burger span { background: var(--white); }
+html.theme-light .nav-mobile { background: rgba(251,250,246,0.97); }
+html.theme-light .hero-photo img {
+  filter: drop-shadow(0 0 60px rgba(10,13,24,0.10));
+  mask-image: linear-gradient(to top, transparent 0%, black 18%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 18%, black 90%, transparent 100%);
+}
+html.theme-light .hero-photo::after {
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+}
+html.theme-light .hc-map iframe,
+html.theme-light .map-block iframe { filter: none; }
+html.theme-light .repo-thumb-icon svg { stroke: var(--white); }
+html.theme-light .gallery-item svg { stroke: rgba(10,13,24,0.15); }
+html.theme-light .gallery-label { color: rgba(10,13,24,0.4); }
+html.theme-light .photo-placeholder svg { stroke: rgba(10,13,24,0.2); }
+html.theme-light .photo-placeholder span { color: var(--gray-2); }
+html.theme-light img[src*="horizonte-logo-gold"] { filter: brightness(0.85); }
+html.theme-light .hero-name em { color: var(--gold); }
+
+/* Light theme: subtle background numbers in Areas grid */
+html.theme-light .area-item::before { color: rgba(10,13,24,0.04); }
+html.theme-light .area-item { background: var(--bg); }
+html.theme-light .area-item:hover { background: var(--bg-3); }
+html.theme-light .areas-grid { background: var(--border); }
+html.theme-light .form-group input,
+html.theme-light .form-group select,
+html.theme-light .form-group textarea {
+  background: var(--bg-2);
+  border-color: var(--border);
+  color: var(--white);
+}

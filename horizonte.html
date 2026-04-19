@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizonte Claro — Geriatria, Psiquiatria e Perícia · Brasília–DF</title>
+  <meta name="description" content="Horizonte Claro — Clínica especializada em Geriatria, Psiquiatria Forense e Perícia em Neuropsiquiatria Geriátrica. Brasília–DF."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── HERO ── */
+    .hc-hero {
+      padding-top: calc(var(--nav-h) + 7rem);
+      padding-bottom: 6rem;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hc-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 65%);
+    }
+    .hc-hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 400; line-height: 1.05;
+      color: var(--white); margin-bottom: .5rem;
+    }
+    .hc-hero-name em { font-style: italic; color: var(--gold); }
+    .hc-hero-sub {
+      font-size: clamp(.9rem,1.3vw,1.1rem);
+      color: var(--gray); margin: 1rem 0 2.5rem;
+      letter-spacing: .05em;
+    }
+    .hc-contact-row {
+      display: flex; align-items: center; gap: 1.5rem;
+      flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .hc-contact-item {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .85rem; color: var(--gray);
+    }
+    .hc-contact-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .hc-contact-item a { color: var(--white); transition: color .2s; }
+    .hc-contact-item a:hover { color: var(--gold); }
+
+    /* ── ESPECIALIDADES ── */
+    .esp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .esp-item {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      transition: background .3s;
+    }
+    .esp-item:hover { background: var(--bg-2); }
+    .esp-icon { margin-bottom: 1.25rem; }
+    .esp-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .esp-item h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .5rem; }
+    .esp-item p { font-size: .83rem; color: var(--gray); line-height: 1.65; }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1px; background: var(--border);
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3;
+      background: var(--bg-3);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .75rem; position: relative; overflow: hidden;
+    }
+    .gallery-item.span-2 { grid-column: span 2; aspect-ratio: 8/3; }
+    .gallery-item svg { width: 30px; height: 30px; stroke: rgba(255,255,255,0.15); fill: none; stroke-width: 1; }
+    .gallery-label {
+      font-size: .7rem; color: rgba(255,255,255,0.2);
+      letter-spacing: .08em; text-align: center; padding: 0 1.5rem;
+      font-style: italic;
+    }
+    .gallery-item img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── INFO BLOCK ── */
+    .info-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      margin-top: 3rem;
+    }
+    .info-col {
+      background: var(--bg-2);
+      padding: 3rem 2.5rem;
+    }
+    .info-col h3 {
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .info-list { display: flex; flex-direction: column; gap: .75rem; }
+    .info-row { display: flex; gap: 1rem; font-size: .88rem; color: var(--gray); line-height: 1.55; align-items: flex-start; }
+    .info-row svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 3px; }
+    .info-row strong { color: var(--white); }
+
+    /* ── MAP ── */
+    .map-block { margin-top: 1px; background: var(--bg-3); position: relative; }
+    .map-block iframe { width: 100%; height: 460px; border: none; filter: grayscale(1) invert(1) contrast(.85); display: block; }
+    .map-overlay {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(10,13,24,0.9);
+      border: 1px solid var(--gold-line);
+      padding: 1rem 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .map-overlay p { font-size: .8rem; color: var(--white); margin-bottom: .5rem; }
+    .map-overlay a { font-size: .72rem; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; }
+    .map-overlay a:hover { text-decoration: underline; }
+
+    /* ── CTA ── */
+    .hc-cta {
+      text-align: center;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      padding: 5rem 2rem;
+      margin-top: 1px;
+    }
+    .hc-cta h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400; color: var(--white); margin-bottom: 1rem;
+    }
+    .hc-cta p { font-size: .9rem; color: var(--gray); margin-bottom: 2.5rem; }
+    .hc-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .esp-grid { grid-template-columns: 1fr 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery-item.span-2 { grid-column: span 1; aspect-ratio: 4/3; }
+      .info-cols { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .esp-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    "name": "Horizonte Claro Geriatria, Psiquiatria e Perícia",
+    "telephone": "+55-61-3244-0040",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Brasília",
+      "addressRegion": "DF",
+      "addressCountry": "BR"
+    },
+    "medicalSpecialty": ["Geriatrics","Psychiatry","Forensic Medicine"]
+  }
+  </script>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<!-- HERO -->
+<header class="hc-hero">
+  <div class="container">
+    <img src="horizonte-logo-gold.png" alt="Horizonte Claro — Geriatria, Psiquiatria e Perícia" style="height:64px;width:auto;object-fit:contain;display:block;margin-bottom:2rem;opacity:.95;" loading="eager"/>
+
+    <h1 class="hc-hero-name">Horizonte<br><em>Claro</em></h1>
+    <p class="hc-hero-sub">Geriatria · Psiquiatria · Perícia em Neuropsiquiatria Geriátrica</p>
+    <div class="divider"></div>
+    <div class="hc-contact-row">
+      <div class="hc-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.2 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        <a href="tel:+556132440040">(61) 3244-0040</a>
+      </div>
+      <div class="hc-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Brasília–DF · <em style="color:rgba(255,255,255,0.3)">Centro Clínico Advance · SGAS 915 Lotes 69/70, Sala 316 · Asa Sul · CEP 70.390-150</span>
+      </div>
+    </div>
+    <div class="hc-contact-row">
+      <a href="https://wa.me/556132440040" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;stroke:none;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.104 1.508 5.836L.057 23.571a.5.5 0 00.607.608l5.753-1.505A11.951 11.951 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.385l-.36-.214-3.733.977.997-3.645-.235-.376A9.818 9.818 0 012.182 12C2.182 6.556 6.556 2.182 12 2.182S21.818 6.556 21.818 12 17.444 21.818 12 21.818z"/></svg>
+        Agendar via WhatsApp
+      </a>
+      <a href="tel:+556132440040" class="btn">Ligar agora</a>
+    </div>
+  </div>
+</header>
+
+<!-- ESPECIALIDADES -->
+<section class="section">
+  <div class="container">
+    <div class="section-label reveal">Atendimentos</div>
+    <h2 class="section-title reveal">Especialidades</h2>
+    <div class="esp-grid reveal">
+      <div class="esp-item">
+        <div class="esp-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <h3>Geriatria Clínica</h3>
+        <p>Atenção integral ao paciente idoso, prevenção, diagnóstico e manejo de doenças crônicas.</p>
+      </div>
+      <div class="esp-item">
+        <div class="esp-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Neuropsiquiatria Geriátrica</h3>
+        <p>Diagnóstico e tratamento de demências, Alzheimer e transtornos neuropsiquiátricos em idosos.</p>
+      </div>
+      <div class="esp-item">
+        <div class="esp-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Perícia e Assistência Técnica</h3>
+        <p>Avaliação de capacidade civil, testamentária, interdição e curatela. Laudos técnicos periciais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-label reveal">Espaço</div>
+    <h2 class="section-title reveal">Nossa Clínica</h2>
+    <div class="gallery reveal">
+      <!-- SUBSTITUIR PELA FOTO DO LOCAL — fachada da clínica Horizonte Claro -->
+      <div class="gallery-item span-2">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Fachada · Horizonte Claro</span>
+      </div>
+      <!-- SUBSTITUIR PELA FOTO — recepção da clínica -->
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Recepção</span>
+      </div>
+      <!-- SUBSTITUIR PELA FOTO — sala de atendimento principal -->
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Sala de Atendimento</span>
+      </div>
+      <!-- SUBSTITUIR PELA FOTO — sala de exames ou consultório -->
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Consultório</span>
+      </div>
+      <!-- SUBSTITUIR PELA FOTO — área de espera ou corredor -->
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Área de Espera</span>
+      </div>
+      <!-- SUBSTITUIR PELA FOTO — detalhe do espaço ou área externa -->
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gallery-label">Área Externa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFORMAÇÕES + HORÁRIO -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="info-cols reveal">
+      <div class="info-col">
+        <h3>Localização e Contato</h3>
+        <div class="info-list">
+          <div class="info-row">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Endereço</strong><br>Centro Clínico Advance<br>SGAS 915 Lotes 69/70, Sala 316<br>Asa Sul · Brasília–DF · CEP 70.390-150
+            </div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.2 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            <div><strong>Telefone</strong><br><a href="tel:+556132440040">(61) 3244-0040</a></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--gold);stroke:none;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.104 1.508 5.836L.057 23.571a.5.5 0 00.607.608l5.753-1.505A11.951 11.951 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.385l-.36-.214-3.733.977.997-3.645-.235-.376A9.818 9.818 0 012.182 12C2.182 6.556 6.556 2.182 12 2.182S21.818 6.556 21.818 12 17.444 21.818 12 21.818z"/></svg>
+            <div><strong>WhatsApp</strong><br><a href="https://wa.me/556132440040" target="_blank" rel="noopener noreferrer">(61) 3244-0040</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-col">
+        <h3>Horário de Funcionamento</h3>
+        <div class="info-list">
+          <!-- SUBSTITUIR: horário de funcionamento real da Horizonte Claro -->
+          <div class="info-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><strong>Segunda a Sexta</strong><br>Horário a confirmar</div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><strong>Sábado</strong><br>Horário a confirmar</div>
+          </div>
+          <div class="info-row" style="opacity:.5;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            <div><strong>Domingo</strong><br>Fechado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<div class="map-block reveal">
+  <!-- SUBSTITUIR: embed com o endereço confirmado da Horizonte Claro -->
+  <iframe
+    src="https://maps.google.com/maps?q=SGAS%20915%20Lotes%2069%2F70%20Sala%20316%20Asa%20Sul%20Brasilia%20DF&output=embed"
+    title="Localização Horizonte Claro — Brasília–DF"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <div class="map-overlay">
+    <p>Horizonte Claro · Brasília–DF</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=SGAS%20915%20Lotes%2069%2F70%20Sala%20316%20Asa%20Sul%20Brasilia%20DF"
+       target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="hc-cta reveal">
+  <h2>Agende sua consulta</h2>
+  <p>Entre em contato por telefone ou WhatsApp para agendar uma consulta ou avaliação pericial.</p>
+  <div class="hc-cta-btns">
+    <a href="https://wa.me/556132440040" target="_blank" rel="noopener noreferrer" class="btn btn-solid">WhatsApp</a>
+    <a href="tel:+556132440040" class="btn">Ligar: (61) 3244-0040</a>
+  </div>
+</div>
+
+<footer id="footer"></footer>
+<script src="nav.js"></script>
+<script src="demo-switcher.js"></script>
+</body>
+</html>

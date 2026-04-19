@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre — Dr. Otávio Castello</title>
+  <meta name="description" content="Trajetória profissional e acadêmica do Dr. Otávio Castello — Geriatra, Psiquiatra Forense e Perito Médico-Legista."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .about-hero {
+      padding-top: calc(var(--nav-h) + 6rem);
+      padding-bottom: 5rem;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: radial-gradient(ellipse at right top, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .about-hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400; line-height: 1.1;
+      color: var(--white);
+    }
+    .about-hero h1 em { font-style: italic; color: var(--gold); }
+    .about-bio {
+      margin-top: 1.75rem;
+      font-size: .95rem; color: var(--gray);
+      line-height: 1.8; max-width: 58ch;
+    }
+    .rqe-list { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+    .rqe-tag {
+      padding: .4rem 1rem;
+      border: 1px solid var(--gold-line);
+      font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .quick-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+    }
+    .stat-item {
+      background: var(--bg-3);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .stat-item strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 2.2rem; font-weight: 400;
+      color: var(--gold); line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .stat-item span { font-size: .78rem; color: var(--gray); letter-spacing: .05em; }
+
+    /* ── CURRENT ROLES ── */
+    .roles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
+    .role-item {
+      background: var(--bg);
+      padding: 2rem 2rem;
+      border-top: 2px solid transparent;
+      transition: border-color .3s, background .3s;
+    }
+    .role-item:hover { border-top-color: var(--gold); background: var(--bg-2); }
+    .role-org {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .6rem;
+    }
+    .role-title { font-size: .95rem; font-weight: 500; color: var(--white); line-height: 1.4; }
+
+    /* ── TIMELINE ── */
+    .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; padding-bottom: 2.5rem; }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -2rem;
+      top: 6px; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+    }
+    .tl-period {
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .4rem;
+    }
+    .tl-desc { font-size: .88rem; color: var(--gray); line-height: 1.65; }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 1px; margin-top: 3rem; }
+    .edu-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      display: grid; grid-template-columns: 3rem 1fr;
+      gap: 1.5rem; align-items: start;
+      transition: border-color .3s;
+    }
+    .edu-item:hover { border-color: var(--gold-line); }
+    .edu-num {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--gold); opacity: .6; line-height: 1;
+    }
+    .edu-degree { font-size: .95rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; }
+    .edu-inst { font-size: .85rem; color: var(--gray); }
+
+    /* ── LATTES ── */
+    .lattes-bar {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap; margin-top: 3rem;
+    }
+    .lattes-bar p { font-size: .88rem; color: var(--gray); }
+    .lattes-bar strong { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .about-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .roles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<!-- HERO -->
+<header class="about-hero">
+  <div class="container">
+    <div class="about-hero-inner">
+      <div>
+        <div class="section-label">Currículo</div>
+        <h1>Dr. Otávio<br><em>Castello</em></h1>
+        <p class="about-bio">
+          Graduado em Medicina e especializado em Geriatria pela Escola Paulista de Medicina / Universidade Federal de São Paulo (RQE 9.937). Especialista em Medicina Legal e Perícia Médica pela Associação Médica Brasileira (RQE 18.748). Pós-graduado em Psiquiatria Forense pelo NUFOR-IPq da Faculdade de Medicina da Universidade de São Paulo.
+        </p>
+        <div class="rqe-list">
+          <span class="rqe-tag">RQE 9.937 — Geriatria</span>
+          <span class="rqe-tag">RQE 18.748 — Medicina Legal</span>
+          <a href="http://lattes.cnpq.br/6172644291323202" target="_blank" rel="noopener noreferrer" class="btn" style="padding:.4rem 1rem;font-size:.72rem;">Lattes ↗</a>
+        </div>
+      </div>
+      <div class="quick-stats">
+        <div class="stat-item"><strong>20+</strong><span>anos de experiência</span></div>
+        <div class="stat-item"><strong>3</strong><span>especializações</span></div>
+        <div class="stat-item"><strong>UnB</strong><span>Professor Colaborador</span></div>
+        <div class="stat-item"><strong>IML</strong><span>Chefe — Psiq. Forense</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CARGOS ATUAIS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label reveal">Cargos e Afiliações</div>
+    <h2 class="section-title reveal">Posição Atual</h2>
+    <div class="roles-grid reveal">
+      <div class="role-item">
+        <div class="role-org">UnB — Faculdade de Medicina</div>
+        <div class="role-title">Professor Colaborador de Psiquiatria e Psicologia Médica</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">IML/DF — Polícia Civil do DF</div>
+        <div class="role-title">Perito Médico-Legista · Chefe da Seção de Psiquiatria Forense</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">Instituto Parentalidade Prateada</div>
+        <div class="role-title">Fundador e Diretor Científico</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">Horizonte Claro</div>
+        <div class="role-title">Sócio-Diretor — Geriatria, Psiquiatria e Perícia</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">SBGG/DF</div>
+        <div class="role-title">Diretor de Ética e Defesa Profissional</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">IML/DF</div>
+        <div class="role-title">Assessor da Direção e Diretor-Técnico</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">TJDFT</div>
+        <div class="role-title">Grupo de Trabalho — Política Antimanicomial (Res. 487/CNJ)</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">CNJ</div>
+        <div class="role-title">Comitê Nacional sobre a Pessoa Idosa e suas Interseccionalidades</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">CRM/DF</div>
+        <div class="role-title">Membro Titular da Câmara Técnica de Geriatria (desde 2017)</div>
+      </div>
+      <div class="role-item">
+        <div class="role-org">Alzheimer's Association</div>
+        <div class="role-title">Afiliado ISTAART — Neuropsiquiatria Geriátrica</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA PREGRESSA -->
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Histórico</div>
+    <h2 class="section-title reveal">Experiência Pregressa</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-period">2019 – 2022</div>
+        <div class="tl-desc">Diretor da Divisão de Exames Técnicos Médico-Legais do IML/DF.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2015 – 2022</div>
+        <div class="tl-desc">Fundador, presidente e coordenador do grupo de apoio para familiares da Associação Brasileira de Alzheimer/DF.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2017 – 2023</div>
+        <div class="tl-desc">Membro da Câmara Técnica de Geriatria do CRM/DF.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2015 – 2017</div>
+        <div class="tl-desc">Conselheiro-Titular do Conselho dos Direitos da Pessoa Idosa do DF.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2003 – 2010</div>
+        <div class="tl-desc">Integrante do corpo clínico do Hospital e do Residencial Israelita Albert Einstein.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2005 – 2014</div>
+        <div class="tl-desc">Perícias cíveis. Participação em Bancas de Concursos Públicos (CEBRASPE, VUNESP, IADES).</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2005 – 2006</div>
+        <div class="tl-desc">Regulação de autorização de procedimentos — Sul América Seguradora.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2006 · 2011</div>
+        <div class="tl-desc">Gestão em empresas de home care.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">2001 – 2003</div>
+        <div class="tl-desc">Membro da Comissão de Ética do Hospital São Paulo.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">1999 – 2004</div>
+        <div class="tl-desc">Consultorias de Atenção Farmacêutica e Geriatria.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">Projeto especial</div>
+        <div class="tl-desc">Coordenação da logística de Projeto de Pesquisa de Avaliação Psiquiátrica e Neuropsicológica de adolescentes — Universidade da Califórnia e UNIFESP.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO ACADÊMICA -->
+<section class="section">
+  <div class="container">
+    <div class="section-label reveal">Formação</div>
+    <h2 class="section-title reveal">Acadêmica</h2>
+    <div class="edu-list">
+      <div class="edu-item reveal">
+        <span class="edu-num">01</span>
+        <div>
+          <div class="edu-degree">Graduação em Medicina</div>
+          <div class="edu-inst">Escola Paulista de Medicina / Universidade Federal de São Paulo — UNIFESP</div>
+        </div>
+      </div>
+      <div class="edu-item reveal">
+        <span class="edu-num">02</span>
+        <div>
+          <div class="edu-degree">Especialização em Geriatria — RQE 9.937</div>
+          <div class="edu-inst">Escola Paulista de Medicina / UNIFESP</div>
+        </div>
+      </div>
+      <div class="edu-item reveal">
+        <span class="edu-num">03</span>
+        <div>
+          <div class="edu-degree">Especialização em Medicina Legal e Perícia Médica — RQE 18.748</div>
+          <div class="edu-inst">Associação Médica Brasileira — AMB</div>
+        </div>
+      </div>
+      <div class="edu-item reveal">
+        <span class="edu-num">04</span>
+        <div>
+          <div class="edu-degree">Pós-graduação em Psiquiatria Forense</div>
+          <div class="edu-inst">NUFOR-IPq — Faculdade de Medicina da Universidade de São Paulo (FMUSP)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lattes-bar reveal">
+      <p><strong>Currículo Lattes completo</strong> disponível na plataforma CNPq.</p>
+      <a href="http://lattes.cnpq.br/6172644291323202" target="_blank" rel="noopener noreferrer" class="btn">
+        Acessar Lattes ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="nav.js"></script>
+<script src="demo-switcher.js"></script>
+</body>
+</html>
