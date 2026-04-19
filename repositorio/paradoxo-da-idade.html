@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>O Paradoxo da Idade no Brasil — Dr. Otávio Castello</title>
+  <meta name="description" content="Um país jovem que envelheceu rapidamente — coletânea de especialistas sobre o fenômeno do envelhecimento no Brasil."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .article-hero {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: 4rem;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at left top, rgba(201,168,76,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .article-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem; transition: opacity .2s;
+    }
+    .article-back:hover { opacity: .7; }
+    .article-back svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    .article-meta {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .article-badge {
+      padding: .35rem .9rem; background: var(--gold);
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--bg);
+    }
+    .article-date { font-size: .8rem; color: var(--gray-2); }
+    .article-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--white); max-width: 24ch;
+    }
+    .article-hero h1 em { font-style: italic; color: var(--gold); }
+    .article-subtitle {
+      margin-top: 1.25rem; font-size: 1.05rem; color: var(--gray);
+      line-height: 1.75; max-width: 60ch;
+    }
+    .article-body {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      max-width: 72ch; margin: 0 auto;
+    }
+    .article-body p {
+      font-size: 1rem; color: var(--gray); line-height: 1.9; margin-bottom: 1.5rem;
+    }
+    .article-body p:first-child::first-letter {
+      font-family: var(--serif); font-size: 3.5rem; float: left;
+      line-height: 1; padding-right: .75rem; color: var(--gold); font-weight: 400;
+    }
+    .article-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 700px) {
+      .article-hero h1 { max-width: none; }
+      .article-actions { flex-direction: column; }
+      .article-actions .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<header class="article-hero">
+  <div class="container">
+    <a href="../repositorio.html" class="article-back fade-up">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Voltar ao Repositório
+    </a>
+    <div class="article-meta fade-up-2">
+      <span class="article-badge">Coautoria</span>
+      <span class="article-date">Instituto Parentalidade Prateada — IPP</span>
+    </div>
+    <h1 class="fade-up-2">O Paradoxo da <em>Idade</em> no Brasil</h1>
+    <p class="article-subtitle fade-up-3">Um país jovem que envelheceu rapidamente.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="article-body">
+      <p class="reveal">Coletânea que reúne contribuições de especialistas no fenômeno do envelhecimento, abordando diplomas normativos e aspectos do envelhecimento saudável com uma visão realista da questão no Brasil.</p>
+
+      <p class="reveal">A obra reforça a necessidade de observar a longevidade nas perspectivas individual e coletiva, pública e privada, contribuindo para a construção de uma sociedade justa e inclusiva para a pessoa idosa.</p>
+
+      <p class="reveal">O Brasil passou por uma transição demográfica acelerada e singular — de um país com população predominantemente jovem para uma nação que envelhece em ritmo sem precedentes, sem ter resolvido questões estruturais básicas. Este paradoxo é o fio condutor da obra.</p>
+
+      <div class="article-actions reveal">
+        <a href="https://www.amazon.com.br/Paradoxo-Idade-Brasil-envelheceu-rapidamente/dp/6527015011/" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Adquirir na Amazon ↗</a>
+        <a href="https://www.instagram.com/parentalidade_prateada" target="_blank" rel="noopener noreferrer" class="btn">@parentalidade_prateada</a>
+        <a href="../repositorio.html" class="btn">← Voltar ao Repositório</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="../nav.js"></script>
+<script src="../demo-switcher.js"></script>
+</body>
+</html>

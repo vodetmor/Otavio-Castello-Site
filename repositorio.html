@@ -10,7 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
   <style>
-    .repo-grid { display: flex; flex-direction: column; gap: 1px; margin-top: 3rem; }
+    .repo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 3rem;
+    }
 
     .repo-card {
       background: var(--bg-2);
@@ -19,52 +24,41 @@
       grid-template-columns: 160px 1fr;
       transition: border-color .4s cubic-bezier(.22,1,.36,1),
                   background .4s cubic-bezier(.22,1,.36,1),
-                  box-shadow .4s cubic-bezier(.22,1,.36,1),
-                  margin .4s cubic-bezier(.22,1,.36,1);
-      position: relative; overflow: hidden;
-      cursor: pointer;
+                  transform .4s cubic-bezier(.22,1,.36,1),
+                  box-shadow .4s cubic-bezier(.22,1,.36,1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
     }
     .repo-card::before {
       content: '';
       position: absolute; left: 0; top: 0; bottom: 0;
       width: 2px; background: transparent;
-      transition: background .3s, width .4s cubic-bezier(.22,1,.36,1);
+      transition: background .3s, width .3s;
     }
-    .repo-card:hover { border-color: var(--gold-line); background: var(--bg-3); }
-    .repo-card:hover::before { background: var(--gold); }
-
-    /* ── EXPANDED = ARTICLE MODE ── */
-    .repo-card.expanded {
-      grid-template-columns: 1fr;
+    .repo-card:hover {
       border-color: var(--gold-line);
-      background: var(--bg);
-      box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px var(--gold-line);
-      margin: 1.5rem 0;
-      cursor: default;
+      background: var(--bg-3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.2);
     }
-    .repo-card.expanded::before { background: var(--gold); width: 3px; }
-    .repo-card.expanded .repo-thumb {
-      flex-direction: row;
-      min-height: auto;
-      padding: 1rem 2rem;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
-      justify-content: flex-start;
+    .repo-card:hover::before { background: var(--gold); width: 3px; }
+
+    /* arrow indicator */
+    .repo-card::after {
+      content: '→';
+      position: absolute;
+      right: 2rem; top: 50%;
+      transform: translateY(-50%) translateX(-4px);
+      font-size: 1.2rem;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity .3s, transform .3s cubic-bezier(.22,1,.36,1);
     }
-    .repo-card.expanded .repo-thumb-badge { position: static; padding: .3rem .8rem; }
-    .repo-card.expanded .repo-content {
-      padding: 2.5rem clamp(2rem, 5vw, 4rem);
-      max-width: 72ch;
-    }
-    .repo-card.expanded .repo-title {
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      line-height: 1.3;
-      margin-bottom: .75rem;
-    }
-    .repo-card.expanded .repo-desc-short {
-      font-size: .95rem;
-      line-height: 1.85;
+    .repo-card:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
     }
 
     /* thumbnail column */
@@ -76,9 +70,11 @@
       padding: 2rem 1.25rem; gap: 1rem;
       min-height: 180px;
       position: relative;
-      transition: all .4s cubic-bezier(.22,1,.36,1);
+      transition: background .3s;
     }
-    .repo-thumb-icon { opacity: .35; }
+    .repo-card:hover .repo-thumb { background: rgba(201,168,76,0.05); }
+    .repo-thumb-icon { opacity: .35; transition: opacity .3s; }
+    .repo-card:hover .repo-thumb-icon { opacity: .6; }
     .repo-thumb-icon svg { width: 38px; height: 38px; stroke: var(--white); fill: none; stroke-width: 1; }
     .repo-thumb-year {
       font-size: .68rem; font-weight: 600;
@@ -92,7 +88,6 @@
       font-size: .6rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase;
       color: var(--bg); text-align: center;
-      transition: all .3s;
     }
     .repo-thumb img {
       width: 100%; height: 100%;
@@ -101,10 +96,7 @@
     }
 
     /* content column */
-    .repo-content {
-      padding: 2.25rem 2.5rem;
-      transition: padding .4s cubic-bezier(.22,1,.36,1);
-    }
+    .repo-content { padding: 2.25rem 2.5rem; padding-right: 4rem; }
     .repo-type {
       display: inline-flex; align-items: center; gap: .5rem;
       font-size: .65rem; font-weight: 600;
@@ -116,67 +108,19 @@
       font-family: var(--serif);
       font-size: clamp(1.1rem, 1.8vw, 1.45rem);
       font-weight: 400; color: var(--white);
-      line-height: 1.25; margin-bottom: .5rem;
-      transition: font-size .4s cubic-bezier(.22,1,.36,1);
+      line-height: 1.3; margin-bottom: .5rem;
     }
     .repo-date { font-size: .78rem; color: var(--gray-2); margin-bottom: .85rem; }
-    .repo-desc-short {
-      font-size: .88rem; color: var(--gray); line-height: 1.7;
-      transition: font-size .3s;
-    }
-
-    /* expandable extra content */
-    .repo-extra {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height .5s cubic-bezier(.22,1,.36,1),
-                  opacity .4s cubic-bezier(.22,1,.36,1),
-                  margin .4s cubic-bezier(.22,1,.36,1),
-                  padding .4s cubic-bezier(.22,1,.36,1);
-      margin-top: 0;
-      padding-top: 0;
-    }
-    .repo-card.expanded .repo-extra {
-      max-height: 800px;
-      opacity: 1;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .repo-extra p {
-      font-size: .92rem; color: var(--gray); line-height: 1.85; margin-bottom: 1.25rem;
-    }
-    .repo-citation {
-      padding: 1.25rem 1.5rem;
-      background: rgba(201,168,76,0.06);
-      border-left: 2px solid var(--gold);
-      font-size: .82rem; color: var(--gray);
-      line-height: 1.7; font-style: italic;
-      margin-bottom: 1.5rem;
-      border-radius: 0 4px 4px 0;
-    }
-    .repo-citation strong { color: var(--white); font-style: normal; }
-    .repo-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .5rem; }
-
-    .repo-expand-btn {
-      display: inline-flex; align-items: center; gap: .5rem;
+    .repo-desc-short { font-size: .88rem; color: var(--gray); line-height: 1.7; }
+    .repo-read-more {
+      display: inline-flex; align-items: center; gap: .4rem;
       margin-top: 1.25rem;
-      font-size: .75rem; font-weight: 600;
+      font-size: .72rem; font-weight: 600;
       letter-spacing: .12em; text-transform: uppercase;
-      color: var(--gold); background: none; border: none;
-      cursor: pointer; font-family: var(--font);
-      padding: .5rem 0;
-      transition: opacity .2s, gap .3s;
-      min-height: 44px;
+      color: var(--gold);
+      transition: gap .3s;
     }
-    .repo-expand-btn:hover { opacity: .7; }
-    .repo-expand-btn svg {
-      width: 14px; height: 14px;
-      stroke: var(--gold); fill: none; stroke-width: 2.5;
-      transition: transform .4s cubic-bezier(.22,1,.36,1);
-    }
-    .repo-card.expanded .repo-expand-btn svg { transform: rotate(180deg); }
+    .repo-card:hover .repo-read-more { gap: .7rem; }
 
     .repo-featured { border-color: var(--gold-line); }
 
@@ -194,7 +138,10 @@
     .filter-btn.active, .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
 
     @media (max-width: 700px) {
-      .repo-card { grid-template-columns: 1fr; }
+      .repo-card {
+        grid-template-columns: 1fr;
+      }
+      .repo-card::after { display: none; }
       .repo-thumb {
         min-height: auto;
         flex-direction: row;
@@ -206,11 +153,7 @@
       }
       .repo-thumb-icon svg { width: 28px; height: 28px; }
       .repo-thumb-badge { position: static; padding: .3rem .6rem; }
-      .repo-content { padding: 1.5rem; }
-      .repo-card.expanded .repo-content { padding: 1.5rem; max-width: none; }
-      .repo-card.expanded .repo-title { font-size: 1.25rem; }
-      .repo-actions { flex-direction: column; }
-      .repo-actions .btn { width: 100%; justify-content: center; }
+      .repo-content { padding: 1.5rem; padding-right: 1.5rem; }
     }
   </style>
 </head>
@@ -221,7 +164,7 @@
   <div class="container">
     <div class="section-label">Produção Intelectual</div>
     <h1 class="section-title" style="font-family:var(--serif);font-weight:400;">Repositório</h1>
-    <p class="section-sub">Trabalhos acadêmicos, publicações e obras das quais o Dr. Otávio Castello participou como autor ou prefaciador. Clique em cada item para expandir.</p>
+    <p class="section-sub">Trabalhos acadêmicos, publicações e obras das quais o Dr. Otávio Castello participou como autor ou prefaciador. Clique para ler.</p>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn" data-filter="academico">Trabalhos Acadêmicos</button>
@@ -236,7 +179,7 @@
     <div class="repo-grid">
 
       <!-- ── 01 SURFANDO NO TSUNAMI ── -->
-      <div class="repo-card reveal" data-category="academico">
+      <a href="repositorio/surfando-no-tsunami.html" class="repo-card reveal" data-category="academico">
         <div class="repo-thumb">
           <div class="repo-thumb-icon">
             <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -247,27 +190,14 @@
         <div class="repo-content">
           <div class="repo-type">Trabalho Acadêmico</div>
           <h2 class="repo-title">Surfando no Tsunami</h2>
-          <div class="repo-date">Novembro de 2023 · Escola Superior da Polícia Civil do Distrito Federal</div>
-          <p class="repo-desc-short">Reflexões para o Enfrentamento dos Desafios para a Implementação da Política Antimanicomial do Poder Judiciário. Trabalho de Conclusão de Curso que analisa a Resolução nº 487 do CNJ à luz do conhecimento médico-científico atual.</p>
-          <button class="repo-expand-btn" onclick="toggleCard(this)">
-            Ler mais
-            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="repo-extra">
-            <p>O título evoca os desafios existentes para a implantação da política antimanicomial do Poder Judiciário, que representa uma mudança radical no paradigma vigente. O trabalho buscou contribuir com o entendimento dos pressupostos da Resolução nº 487 do Conselho Nacional de Justiça e confrontá-los com o conhecimento médico-científico atual.</p>
-            <p>Foram abordados aspectos como "periculosidade" (Risco de Agir com Violência), estrutura da rede de assistência de saúde mental do SUS, perfil atual das instituições psiquiátricas de custódia (hospitais de custódia ou "manicômios judiciários") e perícia psiquiátrico-forense, entre outros.</p>
-            <div class="repo-citation">
-              <strong>Sugestão de citação:</strong> Castello, O. <em>SURFANDO NO TSUNAMI: Reflexões para o Enfrentamento dos Desafios para a Implementação da Política Antimanicomial do Poder Judiciário.</em> Escola Superior da Polícia Civil do Distrito Federal. Brasília, nov., 2023.
-            </div>
-            <div class="repo-actions">
-              <a href="repositorio/2023-surfando-no-tsunami.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Baixar PDF ↓</a>
-            </div>
-          </div>
+          <div class="repo-date">Novembro de 2023 · Escola Superior da Polícia Civil do DF</div>
+          <p class="repo-desc-short">Reflexões para o Enfrentamento dos Desafios para a Implementação da Política Antimanicomial do Poder Judiciário.</p>
+          <span class="repo-read-more">Ler artigo →</span>
         </div>
-      </div>
+      </a>
 
       <!-- ── 02 TEMPESTADE PERFEITA ── -->
-      <div class="repo-card reveal" data-category="academico">
+      <a href="repositorio/tempestade-perfeita.html" class="repo-card reveal" data-category="academico">
         <div class="repo-thumb">
           <div class="repo-thumb-icon">
             <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -278,32 +208,18 @@
         <div class="repo-content">
           <div class="repo-type">Trabalho Acadêmico</div>
           <h2 class="repo-title">Mortes no trânsito relacionadas a idosos com Alzheimer e outras demências: uma tempestade perfeita</h2>
-          <div class="repo-date">Maio de 2019 · Escola Superior da Polícia Civil do Distrito Federal</div>
-          <p class="repo-desc-short">O artigo apresenta o cenário resultante do aumento acelerado de casos de demência entre a população idosa, combinado com o crescimento da longevidade dos condutores veiculares — uma "tempestade perfeita".</p>
-          <button class="repo-expand-btn" onclick="toggleCard(this)">
-            Ler mais
-            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="repo-extra">
-            <p>O trabalho discute o padrão normativo atual, insuficiente tanto para detectar adequadamente idosos dementados na avaliação de renovação de habilitação, quanto para formar profissionais capacitados para esse mister. Aborda também normas que prejudicam a atuação dos peritos psicólogos de trânsito.</p>
-            <p>É apresentado um panorama de como esse problema é tratado de forma exitosa em diferentes países, além de recomendações para o manejo de pessoas com demência que ainda conduzem veículos.</p>
-            <div class="repo-citation">
-              <strong>Sugestão de citação:</strong> Castello, O. <em>Mortes no trânsito relacionadas a idosos com Alzheimer e outras demências: Uma tempestade perfeita.</em> Escola Superior da Polícia Civil do Distrito Federal. Brasília, mai., 2019.
-            </div>
-            <div class="repo-actions">
-              <a href="repositorio/2019-tempestade-perfeita.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Baixar PDF ↓</a>
-            </div>
-          </div>
+          <div class="repo-date">Maio de 2019 · Escola Superior da Polícia Civil do DF</div>
+          <p class="repo-desc-short">O cenário resultante do aumento acelerado de casos de demência entre a população idosa, combinado com o crescimento da longevidade dos condutores veiculares.</p>
+          <span class="repo-read-more">Ler artigo →</span>
         </div>
-      </div>
+      </a>
 
       <!-- ── 03 PARADOXO DA IDADE ── -->
-      <div class="repo-card repo-featured reveal" data-category="livro">
+      <a href="repositorio/paradoxo-da-idade.html" class="repo-card repo-featured reveal" data-category="livro">
         <div class="repo-thumb">
           <div class="repo-thumb-icon">
             <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
           </div>
-          <!-- SUBSTITUIR: capa do livro "O Paradoxo da Idade no Brasil" -->
           <span class="repo-thumb-year">Livro</span>
           <span class="repo-thumb-badge">Coautoria</span>
         </div>
@@ -311,28 +227,17 @@
           <div class="repo-type">Coautoria</div>
           <h2 class="repo-title">O Paradoxo da Idade no Brasil: um país jovem que envelheceu rapidamente</h2>
           <div class="repo-date">Instituto Parentalidade Prateada — IPP</div>
-          <p class="repo-desc-short">Coletânea que reúne contribuições de especialistas no fenômeno do envelhecimento, abordando diplomas normativos e aspectos do envelhecimento saudável com uma visão realista da questão no Brasil.</p>
-          <button class="repo-expand-btn" onclick="toggleCard(this)">
-            Ler mais
-            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="repo-extra">
-            <p>A obra reforça a necessidade de observar a longevidade nas perspectivas individual e coletiva, pública e privada, contribuindo para a construção de uma sociedade justa e inclusiva para a pessoa idosa.</p>
-            <div class="repo-actions">
-              <a href="https://www.amazon.com.br/Paradoxo-Idade-Brasil-envelheceu-rapidamente/dp/6527015011/" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Adquirir na Amazon ↗</a>
-              <a href="https://www.instagram.com/parentalidade_prateada" target="_blank" rel="noopener noreferrer" class="btn">@parentalidade_prateada</a>
-            </div>
-          </div>
+          <p class="repo-desc-short">Coletânea que reúne contribuições de especialistas no fenômeno do envelhecimento, abordando diplomas normativos e aspectos do envelhecimento saudável.</p>
+          <span class="repo-read-more">Ler mais →</span>
         </div>
-      </div>
+      </a>
 
       <!-- ── 04 ALZHEIMER: CONHECER PARA CUIDAR ── -->
-      <div class="repo-card reveal" data-category="prefacio">
+      <a href="repositorio/alzheimer-conhecer-para-cuidar.html" class="repo-card reveal" data-category="prefacio">
         <div class="repo-thumb">
           <div class="repo-thumb-icon">
             <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
           </div>
-          <!-- SUBSTITUIR: capa do livro "Alzheimer: Conhecer para Cuidar" -->
           <span class="repo-thumb-year">Livro</span>
           <span class="repo-thumb-badge">Prefácio</span>
         </div>
@@ -340,19 +245,10 @@
           <div class="repo-type">Prefácio</div>
           <h2 class="repo-title">Alzheimer: Conhecer para Cuidar</h2>
           <div class="repo-date">Org. Fabiana Satiro e Vera Caovilla · Edições Portal do Envelhecimento</div>
-          <p class="repo-desc-short">Obra com 31 artigos e mais de 700 páginas abarcando todas as áreas do conhecimento sobre demências. Prefaciada pelo Dr. Otávio Castello — Médico-Geriatra, filho, neto e afilhado de mulheres com demência de Alzheimer.</p>
-          <button class="repo-expand-btn" onclick="toggleCard(this)">
-            Ler mais
-            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="repo-extra">
-            <p>O sonho de ter uma espécie de manual/guia sobre demências nasceu na década de 1980, quando Vera Caovilla começou a cuidar do pai com diagnóstico de Demência de Alzheimer. Reunindo quase 20 anos de atendimento domiciliar de Fabiana Satiro, a obra foca nas informações básicas para os cuidados de alguém com síndrome demencial, especialmente o Alzheimer.</p>
-            <div class="repo-actions">
-              <a href="https://edicoes.portaldoenvelhecimento.com.br/novo/produto/alzheimer-conhecer-para-cuidar/" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Adquirir ↗</a>
-            </div>
-          </div>
+          <p class="repo-desc-short">Obra com 31 artigos e mais de 700 páginas sobre demências. Prefaciada pelo Dr. Otávio Castello.</p>
+          <span class="repo-read-more">Ler mais →</span>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -361,61 +257,12 @@
 <footer id="footer"></footer>
 <script src="nav.js"></script>
 <script>
-  function toggleCard(btn) {
-    const card = btn.closest('.repo-card');
-    const wasExpanded = card.classList.contains('expanded');
-
-    // Close all other cards first
-    document.querySelectorAll('.repo-card.expanded').forEach(c => {
-      if (c !== card) {
-        c.classList.remove('expanded');
-        const otherBtn = c.querySelector('.repo-expand-btn');
-        if (otherBtn) updateBtnText(otherBtn, false);
-      }
-    });
-
-    // Toggle this card
-    card.classList.toggle('expanded');
-    const isExpanded = card.classList.contains('expanded');
-    updateBtnText(btn, isExpanded);
-
-    // Scroll into view when expanding
-    if (isExpanded) {
-      setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-  }
-
-  function updateBtnText(btn, expanded) {
-    const svg = btn.querySelector('svg');
-    btn.textContent = '';
-    btn.appendChild(document.createTextNode(expanded ? 'Fechar ' : 'Ler mais '));
-    if (svg) btn.appendChild(svg);
-  }
-
-  // Allow clicking card header area to expand too
-  document.querySelectorAll('.repo-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't toggle if clicking a link/button inside
-      if (e.target.closest('a') || e.target.closest('.repo-expand-btn') || e.target.closest('.repo-extra')) return;
-      const btn = card.querySelector('.repo-expand-btn');
-      if (btn) toggleCard(btn);
-    });
-  });
-
   // Filter
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
-      // Close all expanded cards on filter change
-      document.querySelectorAll('.repo-card.expanded').forEach(c => {
-        c.classList.remove('expanded');
-        const eb = c.querySelector('.repo-expand-btn');
-        if (eb) updateBtnText(eb, false);
-      });
       document.querySelectorAll('.repo-card').forEach(card => {
         card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
       });

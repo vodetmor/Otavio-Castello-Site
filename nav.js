@@ -1,11 +1,16 @@
 // ── SHARED NAV + FOOTER ──────────────────────────────
 (function () {
+  // Detect if we're in a subdirectory
+  const path = location.pathname;
+  const inSubdir = path.includes('/repositorio/') || path.split('/').filter(Boolean).length > 1 && !path.endsWith('repositorio.html');
+  const base = inSubdir ? '../' : '';
+
   const pages = [
-    { href: 'index.html',       label: 'Home' },
-    { href: 'sobre.html',       label: 'Sobre' },
-    { href: 'repositorio.html', label: 'Repositório' },
-    { href: 'horizonte.html',   label: 'Horizonte Claro' },
-    { href: 'contato.html',     label: 'Contato' },
+    { href: base + 'index.html',       label: 'Home' },
+    { href: base + 'sobre.html',       label: 'Sobre' },
+    { href: base + 'repositorio.html', label: 'Repositório' },
+    { href: base + 'horizonte.html',   label: 'Horizonte Claro' },
+    { href: base + 'contato.html',     label: 'Contato' },
   ];
 
   const current = location.pathname.split('/').pop() || 'index.html';

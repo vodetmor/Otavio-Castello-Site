@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tempestade Perfeita — Dr. Otávio Castello</title>
+  <meta name="description" content="Mortes no trânsito relacionadas a idosos com Alzheimer e outras demências: uma tempestade perfeita."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .article-hero {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: 4rem;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at left top, rgba(201,168,76,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .article-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem; transition: opacity .2s;
+    }
+    .article-back:hover { opacity: .7; }
+    .article-back svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    .article-meta {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .article-badge {
+      padding: .35rem .9rem; background: var(--gold);
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--bg);
+    }
+    .article-date { font-size: .8rem; color: var(--gray-2); }
+    .article-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--white); max-width: 24ch;
+    }
+    .article-hero h1 em { font-style: italic; color: var(--gold); }
+    .article-subtitle {
+      margin-top: 1.25rem; font-size: 1.05rem; color: var(--gray);
+      line-height: 1.75; max-width: 60ch;
+    }
+    .article-body {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      max-width: 72ch; margin: 0 auto;
+    }
+    .article-body p {
+      font-size: 1rem; color: var(--gray); line-height: 1.9; margin-bottom: 1.5rem;
+    }
+    .article-body p:first-child::first-letter {
+      font-family: var(--serif); font-size: 3.5rem; float: left;
+      line-height: 1; padding-right: .75rem; color: var(--gold); font-weight: 400;
+    }
+    .article-citation {
+      padding: 1.5rem 2rem;
+      background: rgba(201,168,76,0.06);
+      border-left: 3px solid var(--gold);
+      font-size: .88rem; color: var(--gray);
+      line-height: 1.75; font-style: italic;
+      margin: 2.5rem 0; border-radius: 0 4px 4px 0;
+    }
+    .article-citation strong { color: var(--white); font-style: normal; }
+    .article-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 700px) {
+      .article-hero h1 { max-width: none; }
+      .article-actions { flex-direction: column; }
+      .article-actions .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<header class="article-hero">
+  <div class="container">
+    <a href="../repositorio.html" class="article-back fade-up">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Voltar ao Repositório
+    </a>
+    <div class="article-meta fade-up-2">
+      <span class="article-badge">TCC</span>
+      <span class="article-date">Maio de 2019 · Escola Superior da Polícia Civil do DF</span>
+    </div>
+    <h1 class="fade-up-2">Uma <em>Tempestade Perfeita</em></h1>
+    <p class="article-subtitle fade-up-3">Mortes no trânsito relacionadas a idosos com Alzheimer e outras demências.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="article-body">
+      <p class="reveal">O artigo apresenta o cenário resultante do aumento acelerado de casos de demência entre a população idosa, combinado com o crescimento da longevidade dos condutores veiculares — uma "tempestade perfeita" que exige atenção urgente das autoridades e profissionais de saúde.</p>
+
+      <p class="reveal">O trabalho discute o padrão normativo atual, insuficiente tanto para detectar adequadamente idosos dementados na avaliação de renovação de habilitação, quanto para formar profissionais capacitados para esse mister. Aborda também normas que prejudicam a atuação dos peritos psicólogos de trânsito.</p>
+
+      <p class="reveal">É apresentado um panorama de como esse problema é tratado de forma exitosa em diferentes países, além de recomendações para o manejo de pessoas com demência que ainda conduzem veículos.</p>
+
+      <div class="article-citation reveal">
+        <strong>Sugestão de citação:</strong> Castello, O. <em>Mortes no trânsito relacionadas a idosos com Alzheimer e outras demências: Uma tempestade perfeita.</em> Escola Superior da Polícia Civil do Distrito Federal. Brasília, mai., 2019.
+      </div>
+
+      <div class="article-actions reveal">
+        <a href="2019-tempestade-perfeita.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Baixar PDF ↓</a>
+        <a href="../repositorio.html" class="btn">← Voltar ao Repositório</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="../nav.js"></script>
+<script src="../demo-switcher.js"></script>
+</body>
+</html>
