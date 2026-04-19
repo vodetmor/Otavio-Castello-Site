@@ -1,24 +1,20 @@
 // ── SHARED NAV + FOOTER ──────────────────────────────
 (function () {
-  // Detect if we're in a subdirectory
-  const path = location.pathname;
-  const inSubdir = path.includes('/repositorio/') || path.split('/').filter(Boolean).length > 1 && !path.endsWith('repositorio.html');
-  const base = inSubdir ? '../' : '';
-
   const pages = [
-    { href: base + 'index.html',       label: 'Home' },
-    { href: base + 'sobre.html',       label: 'Sobre' },
-    { href: base + 'repositorio.html', label: 'Repositório' },
-    { href: base + 'horizonte.html',   label: 'Horizonte Claro' },
-    { href: base + 'contato.html',     label: 'Contato' },
+    { href: '/',             label: 'Home' },
+    { href: '/sobre',        label: 'Sobre' },
+    { href: '/repositorio',  label: 'Repositório' },
+    { href: '/horizonte',    label: 'Horizonte Claro' },
+    { href: '/contato',      label: 'Contato' },
   ];
 
-  const current = location.pathname.split('/').pop() || 'index.html';
+  let current = location.pathname.replace(/\/$/, '').replace('.html', '');
+  if (current === '' || current === '/index') current = '/';
 
   // ── NAV ──
   const nav = document.getElementById('nav');
   nav.innerHTML = `
-    <a class="nav-logo" href="index.html" aria-label="Início"></a>
+    <a class="nav-logo" href="/" aria-label="Início"></a>
     <ul class="nav-links">
       ${pages.map(p => `
         <li><a href="${p.href}" class="${current === p.href ? 'active' : ''}">${p.label}</a></li>
